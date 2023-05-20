@@ -50,8 +50,13 @@ export default {
             oldName.value = props.name;
             oldPassword.value = props.password;
         } )
+    
         function login() {
-            axios.post("/api/login?username="+name.value+"&password="+password.value,).then(
+            const data = {
+            account : name.value,
+            password : password.value
+            }
+            axios.post("/api/login",data).then(
                 function(response){
                     console.log(response);
                     if (response.status !== 200 || response.data.code == "10001"){
